@@ -7,9 +7,15 @@ module Bpl
       end
 
 
-      def institutions
-        #insitutions.where(name: 'admin').exists?
-        ['bpl-test:v118s530v']
+      def list_institutions
+        if superuser?
+          #return all pids if superuser
+          Institution.pluck(:pid)
+        else
+          #return only associated pids if normal user
+          insitutions.pluck(:pid)
+        end
+
       end
       
     end

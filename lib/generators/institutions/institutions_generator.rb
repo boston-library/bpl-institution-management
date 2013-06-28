@@ -39,7 +39,7 @@ This generator makes the following changes to your application:
     file_path = "app/models/#{model_name.underscore}.rb"
     if File.exists?(file_path) 
       code = "\n # Connects this user object to Institution-management behaviors. " +
-        "\n include Bpl::InstitutionManagement::UserRoles\n"
+        "\n include Bpl::InstitutionManagement::UserInstitutions\n"
       inject_into_file file_path, code, { :after => /include Hydra::User/ }
     else
       puts "     \e[31mFailure\e[0m  bpl-institution-management requires a user object. This generators assumes that the model is defined in the file #{file_path}, which does not exist.  If you used a different name, please re-run the generator and provide that name as an argument. Such as \b  rails -g roles client"
