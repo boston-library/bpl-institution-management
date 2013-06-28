@@ -29,7 +29,7 @@ This generator makes the following changes to your application:
   # Setup the database migrations
   def copy_migrations
     # Can't get this any more DRY, because we need this order.
-    %w{user_roles.rb}.each do |f|
+    %w{user_institutions.rb}.each do |f|
       better_migration_template f
     end
   end
