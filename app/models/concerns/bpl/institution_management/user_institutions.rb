@@ -7,7 +7,11 @@ module Bpl
       end
 
 
-      def list_institutions
+      def institution_objects
+        BplModels::Institution.where(self.list_institution_pids)
+      end
+
+      def list_institution_pids
         if superuser?
           #return all pids if superuser
           Institution.pluck(:pid)
