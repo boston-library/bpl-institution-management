@@ -21,7 +21,7 @@ module Bpl
       end
 
       def create
-        @institution.name = params[:insitution][:name]
+        @institution.name = params[:institution][:name]
 
         institution = Bplmodels::Institution.find(:label_ssim=>@institution.name)
         if institution.size == 0
