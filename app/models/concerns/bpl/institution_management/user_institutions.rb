@@ -17,7 +17,7 @@ module Bpl
           Institution.pluck(:pid)
         else
           #return only associated pids if normal user
-          insitutions.pluck(:pid)
+          institutions.pluck(:pid)
         end
 
       end
