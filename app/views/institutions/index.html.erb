@@ -1,0 +1,11 @@
+<h2>Institution</h2>
+<ul>
+  <% @institutions.each do |institution| %>
+    <li><%=link_to institution.name, institution_management.institution_path(institution) %></li>
+  <% end %>
+</ul>
+
+<% if can? :create, Institution %>
+  <%= button_to "Create a new institution", institution_management.new_institution_path, method: :get, class: 'btn btn-primary' %>
+<% end %>
+
