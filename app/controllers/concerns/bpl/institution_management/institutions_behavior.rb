@@ -21,10 +21,10 @@ module Bpl
       end
 
       def create
-        @institution.name = params[:insitution][:name]
+        @institution.name = params[:institution][:name]
 
-        institution = Bplmodels::Institution.find(:label_ssim=>@institution.name)
-        if institution.size == 0
+        institution = Bplmodels::Institution.find(:label_ssim=>@institution.name).first
+        if institution == nil
           @localid = @institution.name
           @localid_type = "Physical Location From UI"
 
@@ -52,7 +52,7 @@ module Bpl
       def update
         @institution.name = params[:institution][:name]
 
-        institution = Bplmodels::Institution.find(:label_ssim=>@institution.name)
+        institution = Bplmodels::Institution.find(:label_ssim=>@institution.name).first
         institution.label = @institution.name
         institution.save!
 
@@ -64,7 +64,7 @@ module Bpl
       end
 
       def destroy
-        institution = Bplmodels::Institution.find(:label_ssim=>@institution.name)
+        institution = Bplmodels::Institution.find(:label_ssim=>@institution.name).first
         institution.label = @institution.name
         institution.delete
 
