@@ -4,7 +4,7 @@ module Bpl
       extend ActiveSupport::Concern
 
       included do
-        load_and_authorize_resource :role
+        load_and_authorize_resource :institution
       end
 
       def create
