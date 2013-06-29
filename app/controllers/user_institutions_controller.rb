@@ -1,5 +1,5 @@
 class UserRolesController < ApplicationController
-  include Hydra::RoleManagement::UserRolesBehavior
+  include Bpl::InstitutionManagement::UserInstitutionsBehavior
 end
 
 

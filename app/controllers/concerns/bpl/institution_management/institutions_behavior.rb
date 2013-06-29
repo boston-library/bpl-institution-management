@@ -34,8 +34,7 @@ module Bpl
 
           institution = Bplmodels::Institution.new(:pid=>as_json["pid"])
           institution.label =  @institution.name
-          title = getProperTitle(@institution.name)
-          institution.descMetadata.insert_title(title[0], title[1])
+          institution.descMetadata.insert_title(@institution.name, nil)
 
           institution.save!
         end
