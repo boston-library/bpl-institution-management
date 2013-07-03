@@ -22,13 +22,34 @@ module Bpl
 
       end
 
-      def list_institution_names
+      def list_institution_names_correct
         if superuser?
           #return all pids if superuser
           Institution.pluck(:name)
         else
           #return only associated pids if normal user
           institutions.pluck(:name)
+        end
+
+      end
+
+      #def list_collection_names
+      def list_institution_names
+        if superuser?
+          #return all pids if superuser
+          collection_list = []
+          Bplmodels::Collection.all.each do |collection|
+            collection_list << collection.label
+          end
+
+        else
+          #return only associated pids if normal user
+          collection_list = []
+          institution_objects =  Bplmodels::Institution.find(self.list_institution_pids[0])
+          institution_objects.collections.each do |collection|
+              collection_list << collection.label
+          end
+
         end
 
       end
