@@ -21,6 +21,17 @@ module Bpl
         end
 
       end
+
+      def list_institution_names
+        if superuser?
+          #return all pids if superuser
+          Institution.pluck(:name)
+        else
+          #return only associated pids if normal user
+          institutions.pluck(:name)
+        end
+
+      end
       
     end
   end
