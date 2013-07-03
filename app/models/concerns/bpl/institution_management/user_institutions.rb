@@ -35,23 +35,23 @@ module Bpl
 
       #def list_collection_names
       def list_institution_names
+        collection_list = []
         if superuser?
           #return all pids if superuser
-          collection_list = []
+
           Bplmodels::Collection.all.each do |collection|
             collection_list << collection.label
           end
 
         else
           #return only associated pids if normal user
-          collection_list = []
           institution_objects =  Bplmodels::Institution.find(self.list_institution_pids[0])
           institution_objects.collections.each do |collection|
               collection_list << collection.label
           end
 
         end
-
+        collection_list
       end
       
     end
