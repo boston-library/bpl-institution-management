@@ -8,7 +8,7 @@ module Bpl
 
 
       def institution_objects
-        Bplmodels::Institution.where(self.list_institution_pids)
+        Bplmodels::Institution.find(self.list_institution_pids)
       end
 
       def list_institution_pids
