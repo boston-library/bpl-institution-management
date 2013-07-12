@@ -37,11 +37,9 @@ module Bpl
         collection_list = []
         if superuser?
           #return all pids if superuser
-
           Bplmodels::Collection.all.each do |collection|
             collection_list << collection.pid
           end
-
         else
           #return only associated pids if normal user
           self.institution_objects.collections.each do |collection|
