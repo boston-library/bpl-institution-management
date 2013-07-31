@@ -42,10 +42,11 @@ module Bpl
           end
         else
           #return only associated pids if normal user
-          self.institution_objects.collections.each do |collection|
+          self.institution_objects.each do |institution|
+            institution.collections.each do |collection|
               collection_list << collection.pid
+            end
           end
-
         end
         collection_list
       end
