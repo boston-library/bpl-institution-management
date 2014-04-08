@@ -21,7 +21,9 @@ module Bpl
       end
 
       def create
-        @institution.name = params[:institution][:name]
+
+        @institution = Institution.new(institution_params)
+        #@institution.name = params[:institution][:name]
 
         institution = Bplmodels::Institution.find(:label_ssim=>@institution.name).first
         if institution == nil
@@ -49,13 +51,13 @@ module Bpl
       end
 
       def update
-        @institution.name = params[:institution][:name]
+        @institution = Institution.find(params[:id])
 
         institution = Bplmodels::Institution.find(:label_ssim=>@institution.name).first
         institution.label = @institution.name
         institution.save!
 
-        if (@institution.save)
+        if (@institution.update_attributes(institution_params))
           redirect_to institution_management.edit_institution_path(@institution), notice: 'Institution was successfully updated.'
         else
           render action: "edit"
@@ -72,6 +74,12 @@ module Bpl
         else
           redirect_to institution_management.institutions_path
         end
+      end
+
+      private
+
+      def institution_params
+          params.require(:institution).permit(:name, :pid)
       end
 
     end
