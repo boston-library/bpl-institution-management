@@ -37,9 +37,13 @@ module Bpl
         collection_list = []
         if superuser?
           #return all pids if superuser
-          Bplmodels::Collection.all.each do |collection|
-            collection_list << collection.pid
+          Bplmodels::Collection.find_in_batches("has_model_ssim"=>"info:fedora/afmodel:Bplmodels_Collection") do |collection_group|
+            collection_group.each { |solr_objects|
+              pid = solr_objects['id']
+              collection_list << pid
+            }
           end
+
         else
           #return only associated pids if normal user
           self.institution_objects.each do |institution|

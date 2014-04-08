@@ -9,3 +9,5 @@ class Institution < ActiveRecord::Base
       :message => "Only letters, numbers, hyphens, underscores, spaces and periods are allowed"}
 
 end
+
+
