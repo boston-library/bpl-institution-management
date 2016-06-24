@@ -5,8 +5,8 @@ class Institution < ActiveRecord::Base
 
   validates :name,
     uniqueness: true,
-    format: { with: /\A[a-zA-Z0-9._ -]+\z/,
-      :message => "Only letters, numbers, hyphens, underscores, spaces and periods are allowed"}
+    format: { with: /\A[a-zA-Z0-9._ -'&,:]+\z/,
+      :message => "Only letters, numbers, hyphens, underscores, spaces, apostrophes, ampersand, commas, colons, and periods are allowed"}
 
 end
 

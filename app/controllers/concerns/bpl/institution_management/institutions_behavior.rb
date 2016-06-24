@@ -50,6 +50,21 @@ module Bpl
         end
       end
 
+      def populate_all
+        institutions = Bplmodels::Institution.all
+        institutions.each do |institution|
+          if Institution.where(:pid=>institution.pid).blank?
+            @institution = Institution.new
+            @institution.pid = institution.pid
+            @institution.name = institution.label
+            puts "Combination was: #{institution.label} and #{institution.pid}"
+            @institution.save!
+          end
+        end
+
+        redirect_to institution_management.institutions_path, notice: 'Populate All Completed.'
+      end
+
       def update
         @institution = Institution.find(params[:id])
 
